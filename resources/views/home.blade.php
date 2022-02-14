@@ -3,20 +3,48 @@
 @section('content')
 <div class="container">
     <div class="row justify-content-center">
-        <div class="col-md-8">
-            <div class="card">
-                <div class="card-header">{{ __('Dashboard') }}</div>
+        <div class="col-md-12">
+            <table class="table table-striped">
+                {{-- {{dd($users->first()->role->first()->name)}} --}}
+                <thead>
+                  <tr>
+                    <th scope="col">Sr. No.</th>
+                    <th scope="col">Name</th>
+                    <th scope="col">Email</th>
+                    <th scope="col">User Type</th>
+                    <th scope="col">Phone</th>
+                    <th scope="col">Address</th>
+                    <th scope="col">Assigned Therapist</th>
+                    <th  scope="col">Actions</th>
+                  </tr>
+                </thead>
+                <tbody>
+                    @foreach ($users as $i => $user)
+                    <tr>
+                        <th scope="row">1</th>
+                        <td>{{$user->name}}</td>
+                        <td>{{$user->email}}</td>
+                        <td>{{$user->role->first()->name}}</td>
+                        <td>{{$user->phone}}</td>
+                        <td>{{$user->address}}</td>
+                        <td>{{$user->assigned_therapist}}</td>
+                        <td>
+                        <button type="button"
+                            class="btn btn-primary"
+                            id="update-user-button-{{$i}}"
+                            data-toggle="modal"
+                            data-target="#exampleModalCenter-{{$user->id}}"
+                            data-id = {{$user->id}}>
+                                {{ __('Update') }}
+                        </button>
+                    </td>
+                        {{-- <td>{{$user->address}}</td> --}}
+                    </tr>
+                    @include('auth.register-modal')
+                    @endforeach
+                </tbody>
+              </table>
 
-                <div class="card-body">
-                    @if (session('status'))
-                        <div class="alert alert-success" role="alert">
-                            {{ session('status') }}
-                        </div>
-                    @endif
-
-                    {{ __('You are logged in!') }}
-                </div>
-            </div>
         </div>
     </div>
 </div>
