@@ -79,7 +79,10 @@ class RegisterController extends Controller
             $toCreate['assigned_therapist'] = $data['assigned_therapist'];
         }
 
-        $user = User::create($toCreate);
+        $user = User::updateOrCreate(
+            ['email' => $data['email']],
+            $toCreate
+        );
 
         $user->role()->attach($data['user_role']);
         return $user;
