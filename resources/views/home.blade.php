@@ -28,15 +28,27 @@
                         <td>{{$user->phone}}</td>
                         <td>{{$user->address}}</td>
                         <td>{{$user->assigned_therapist}}</td>
-                        <td>
-                        <button type="button"
-                            class="btn btn-primary"
-                            id="update-user-button-{{$i}}"
-                            data-toggle="modal"
-                            data-target="#exampleModalCenter-{{$user->id}}"
-                            data-id = {{$user->id}}>
-                                {{ __('Update') }}
-                        </button>
+                        <td class="text-center d-flex justify-content-center">
+                            <button type="button"
+                                class="btn btn-primary btn-sm d-inline"
+                                id="update-user-button-{{$i}}"
+                                data-toggle="modal"
+                                data-target="#exampleModalCenter-{{$user->id}}"
+                                data-id = {{$user->id}}>
+                                    {{ __('Update') }}
+                            </button>
+                            <form action="{{ url('delete',$user->id) }}"  class="d-inline mx-2">
+                                @method('delete')
+                                @csrf
+
+                                <button type="submit"
+                                  name="delete"
+                                  class=" btn d-inline btn-danger btn-sm "
+                                  onclick="return confirm('Are you sure, you want to delete?')"
+                                >
+                                    Delete
+                                </button>
+                            </form>
                     </td>
                         {{-- <td>{{$user->address}}</td> --}}
                     </tr>

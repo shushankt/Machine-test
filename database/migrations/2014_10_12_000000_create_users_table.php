@@ -22,6 +22,7 @@ class CreateUsersTable extends Migration
             $table->string('phone')->nullable();
             $table->string('address')->nullable();
             $table->string('assigned_therapist')->nullable();
+            $table->softDeletes();
             $table->rememberToken();
             $table->timestamps();
         });
