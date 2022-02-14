@@ -45,6 +45,12 @@
                                   name="delete"
                                   class=" btn d-inline btn-danger btn-sm "
                                   onclick="return confirm('Are you sure, you want to delete?')"
+                                  @if (Auth::user()->id === $user->id)
+                                      disabled
+                                      data-toggle="tooltip"
+                                      data-placement="top"
+                                      title="Can not delete authenticate user"
+                                  @endif
                                 >
                                     Delete
                                 </button>
